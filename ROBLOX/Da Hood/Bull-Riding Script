@@ -1,40 +1,35 @@
 getgenv().ToggleBind = "Q"
 
 
-local HmXbRlDp7Iy = game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.BullControls
-local TmU2cQjZ1qVg = false
+local BullControls = game:GetService("Players").LocalPlayer.PlayerGui.MainScreenGui.BullControls
+local Riding = false
+local Left, Down, Up, Right = "Left", "Down", "Up", "Right"
 
-local X8jL4kD6iU, L6jKgD9iXU, Y5aBzH6eEJ, rT2wQmZ7bN, K9dPcM4uLZ, cZ3fH8xVpA, J4vPdM9cYX, E7yNkG1mWt, uB2hQ5rTlF, zN5kG8rHtA, Q2wE7uPcLj, nY7tSbG2fW, sR9yT6fBmZ, xF8vJqR3sT, pA3bN5cWxV = "t", "n", "o", "w", "p", "L", "t", "e", "f", "R", "i", "U", "g", "D", "h"
-local hN3pZ7Qw, tD8sK2Lm, bG5rP9Jf, yR6xV1Gc = cZ3fH8xVpA .. E7yNkG1mWt .. uB2hQ5rTlF .. J4vPdM9cYX, xF8vJqR3sT .. Y5aBzH6eEJ .. rT2wQmZ7bN .. L6jKgD9iXU, nY7tSbG2fW .. K9dPcM4uLZ, zN5kG8rHtA .. Q2wE7uPcLj .. sR9yT6fBmZ .. pA3bN5cWxV .. X8jL4kD6iU
-
-
-local function fNz6vLxPj7Ks(input)
+game:GetService("UserInputService").InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode[getgenv().ToggleBind] then
-        TmU2cQjZ1qVg = not TmU2cQjZ1qVg
+        Riding = (not Riding)
     end
-end
-
-game:GetService("UserInputService").InputBegan:Connect(fNz6vLxPj7Ks)
+end)
 
 while wait() do
-    if TmU2cQjZ1qVg then
-        for _, rGc3VHg2YjKl in ipairs(HmXbRlDp7Iy:GetChildren()) do
+    if Riding then
+        for _, Control in ipairs(BullControls:GetChildren()) do
             task.spawn(function()
-                if rGc3VHg2YjKl.Name == bG5rP9Jf and rGc3VHg2YjKl.ImageColor3 == Color3.fromRGB(255,0,0) then
+                if Control.Name == Up and Control.ImageColor3 == Color3.fromRGB(255,0,0) then
                     keypress(0x57)
-                    repeat wait() until rGc3VHg2YjKl.ImageColor3 ~= Color3.fromRGB(255,0,0)
+                    repeat wait() until Control.ImageColor3 ~= Color3.fromRGB(255,0,0)
                     keyrelease(0x57)
-                elseif rGc3VHg2YjKl.Name == tD8sK2Lm and rGc3VHg2YjKl.ImageColor3 == Color3.fromRGB(255,0,0) then
+                elseif Control.Name == Down and Control.ImageColor3 == Color3.fromRGB(255,0,0) then
                     keypress(0x53)
-                    repeat wait() until rGc3VHg2YjKl.ImageColor3 ~= Color3.fromRGB(255,0,0)
+                    repeat wait() until Control.ImageColor3 ~= Color3.fromRGB(255,0,0)
                     keyrelease(0x53)
-                elseif rGc3VHg2YjKl.Name == hN3pZ7Qw and rGc3VHg2YjKl.ImageColor3 == Color3.fromRGB(255,0,0) then
+                elseif Control.Name == Left and Control.ImageColor3 == Color3.fromRGB(255,0,0) then
                     keypress(0x41)
-                    repeat wait() until rGc3VHg2YjKl.ImageColor3 ~= Color3.fromRGB(255,0,0)
+                    repeat wait() until Control.ImageColor3 ~= Color3.fromRGB(255,0,0)
                     keyrelease(0x41)
-                elseif rGc3VHg2YjKl.Name == yR6xV1Gc and rGc3VHg2YjKl.ImageColor3 == Color3.fromRGB(255,0,0) then
+                elseif Control.Name == Right and Control.ImageColor3 == Color3.fromRGB(255,0,0) then
                     keypress(0x44)
-                    repeat wait() until rGc3VHg2YjKl.ImageColor3 ~= Color3.fromRGB(255,0,0)
+                    repeat wait() until Control.ImageColor3 ~= Color3.fromRGB(255,0,0)
                     keyrelease(0x44)
                 end
             end)
